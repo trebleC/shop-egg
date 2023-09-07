@@ -49,7 +49,7 @@ config.static = {
   prefix: '/',// 将静态资源前缀改为'/'（默认是 '/public')
   dir: [
       path.join(__dirname, '../app/public'), 
-      path.join(__dirname, '../dist')
+      path.join(__dirname, '../html')
   ]
 }
 
