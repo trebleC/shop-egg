@@ -53,6 +53,25 @@ config.static = {
   ]
 }
 
+config.cors = {
+  origin: '*',
+  allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
+}
+
+// config.cors = {
+//   // origin: ['http://localhost'],
+//   origin:function(ctx) { //设置允许来自指定域名请求
+//       console.log(ctx);
+//       const whiteList = ['http://www.baidu.com','http://www.hqyj.com']; 
+//       let url = ctx.request.header.origin;
+//       if(whiteList.includes(url)){
+//           return url;
+//       }
+//       return 'http://localhost' //默认允许本地请求可跨域
+//   },
+//   allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
+// };
+
 
   return {
     ...config,
