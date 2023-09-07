@@ -43,6 +43,17 @@ module.exports = appInfo => {
   config.downloadPath = '/public/upload'
 
 
+// config/config.default.js
+const path = require('path')
+config.static = {
+  prefix: '/',// 将静态资源前缀改为'/'（默认是 '/public')
+  dir: [
+      path.join(__dirname, '../app/public'), 
+      path.join(__dirname, '../dist')
+  ]
+}
+
+
   return {
     ...config,
     ...userConfig,
