@@ -5,6 +5,9 @@
  */
 module.exports = app => {
   const { router, controller } = app;
+
+  router.redirect('/', '/index.html', 302);
+  
   router.get('/', controller.home.index);
   router.post('/user/login',controller.base.login)
   router.get('/getBaseInfo',controller.base.index)
