@@ -40,7 +40,7 @@ module.exports = appInfo => {
 
   //附件地址
   config.attachmentPath = 'app/public/upload'
-  config.downloadPath = '/public/upload'
+  config.downloadPath = '/upload'
 
 
 // config/config.default.js
