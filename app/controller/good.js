@@ -26,6 +26,35 @@ class GoodController extends Controller {
       message: "succes",
     };
   }
+
+  async queryGood(){
+    let goodId = this.ctx.query.goodId
+    let data = await this.ctx.service.good.queryGood(goodId);
+    if(data){
+      this.ctx.body = {
+        code: 0,
+        message: "succes",
+        data
+      };
+    }else{
+      this.ctx.body = {
+        code: 10400,
+        message: "找不到该产品",
+      };
+    }
+
+  }
+
+
+  async queryGoodList(){
+    let list = await this.ctx.service.good.getGoodList(this.ctx.query)
+
+    this.ctx.body = {
+      code:0,
+      message:'success',
+      data:list
+    }
+  }
 }
 
 module.exports = GoodController;

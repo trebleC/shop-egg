@@ -34,6 +34,30 @@ class CategoryController extends Controller {
       message:'succes'
     }
   }
+
+  //获取列表
+
+  async queryCategoryList(){
+    let list = await this.ctx.service.category.getCategoryList()
+
+    this.ctx.body = {
+      code:0,
+      message:'success',
+      data:list
+    }
+  }
+
+
+  //系列枚举
+  async queryCategoryMap(){
+    let list = await this.ctx.service.category.getCategoryMap()
+    
+    this.ctx.body = {
+      code:0,
+      message:'success',
+      data:list
+    }
+  }
 }
 
 module.exports = CategoryController;

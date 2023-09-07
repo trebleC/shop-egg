@@ -7,6 +7,7 @@ class GoodService extends Service {
         if(!goodInfo.goodId){
            
             goodInfo.goodId = await getNextSequenceValue('goods',this.ctx)
+            goodInfo.createTime = new Date()
             await this.ctx.model.Good.create(goodInfo)
             
             return true
@@ -26,6 +27,26 @@ class GoodService extends Service {
 
     async deleteGood(goodId){
         return await this.ctx.model.Good.deleteOne({goodId})
+    }
+
+    async queryGood(goodId){
+        return await this.ctx.model.Good.findOneAndUpdate({ goodId },
+            {$inc: { views: +1 } }
+         );
+        // return await this.ctx.model.Good.findOne({goodId})
+    }
+
+    async getGoodList(params){
+        let query = {
+            name: new RegExp(params.name, 'i')
+        }
+        if(query.categoryId !== undefined){
+            query.categoryId = params.categoryId
+        }
+        
+        
+        return await this.ctx.model.Good.find(query,null).find(()=>{})
+        .sort({_id:-1})
     }
 }
 

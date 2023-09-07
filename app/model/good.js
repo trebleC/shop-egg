@@ -14,8 +14,14 @@ module.exports = ({mongoose}) => {
     name:{
         type:String
     },
-    specification:{
+    goodNo:{
         type:String
+    },
+    views:{
+        type:Number
+    },
+    specification:{
+        type:Object
     },
     desc:{
         type:String

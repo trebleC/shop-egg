@@ -19,14 +19,14 @@ class UploadService extends Service {
             //     new: true
             //  }
              );
-             console.log('sequenceDocument',sequenceDocument);
+    
              return new Promise(resole => {
                 resole(sequenceDocument.sequence_value)
              })
         }
         // 插入新图片
         var attachmentId = await getNextSequenceValue("attachment");
-        // console.log('ctx.model.counter>>>>>>>',attachmentId);
+
         await ctx.model.Attachment.create({
             attachmentId:attachmentId,
             attachmentName:fileInfo.filename,

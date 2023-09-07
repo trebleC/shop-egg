@@ -7,7 +7,7 @@
     //     new: true
     //  }
      );
-     console.log('sequenceDocument',sequenceDocument);
+  
      return new Promise(resole => {
         resole(sequenceDocument.sequence_value)
      })

@@ -34,6 +34,7 @@ class UploadController extends Controller {
 
     // 返回上传的信息
     this.ctx.body = {
+      errno: 0,
       code:0,
       message:'success',
       data:{
@@ -85,7 +86,6 @@ class UploadController extends Controller {
 
   async deleteFile(){
     const {ctx} = this
-    console.log('ctx',ctx.query);
     //this.ctx.service.upload.setAttachmentInfo({filename})
     let {deletedCount} = await this.ctx.service.upload.deleteFile(ctx.query.id)
     // 返回上传的信息
