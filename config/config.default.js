@@ -1,3 +1,4 @@
+const {EGG_MONGODB_URL} = require('./config')
 /* eslint valid-jsdoc: "off" */
 
 'use strict';
@@ -12,11 +13,10 @@ module.exports = appInfo => {
    **/
   const config = exports = {
     mongoose: {
-      url: process.env.EGG_MONGODB_URL || 'mongodb://0.0.0.0:27017/shop',
+      url: process.env.EGG_MONGODB_URL || EGG_MONGODB_URL || 'mongodb://0.0.0.0:27017/shop',
       options: {
-        server: {
-          poolSize: 27017,
-        },
+        native_parser: true,
+        poolSize: 5,
 
       }
     }
