@@ -38,12 +38,14 @@ class GoodService extends Service {
     }
 
     async getGoodList(params){
+        // console.log('query',params);
         let query = {
             name: new RegExp(params.name, 'i')
         }
-        if(query.categoryId !== undefined){
+        if(params.categoryId !== undefined){
             query.categoryId = params.categoryId
         }
+        
         
         
         return await this.ctx.model.Good.find(query,null).find(()=>{})
@@ -59,7 +61,7 @@ class GoodService extends Service {
             name: new RegExp(params.name, 'i'),
             isHot:true
         }
-        if(query.categoryId !== undefined){
+        if(params.categoryId !== undefined){
             query.categoryId = params.categoryId
         }
         
