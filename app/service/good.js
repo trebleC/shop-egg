@@ -38,15 +38,13 @@ class GoodService extends Service {
     }
 
     async getGoodList(params){
-        // console.log('query',params);
-        let query = {
-            name: new RegExp(params.name, 'i')
+        let query = {}
+        if(params.name){
+            query.name = new RegExp(params.name, 'i')
         }
-        if(params.categoryId !== undefined){
+        if(params.categoryId || params.categoryId === 0){
             query.categoryId = params.categoryId
         }
-        
-        
         
         return await this.ctx.model.Good.find(query,null).find(()=>{})
         .sort({_id:-1})
