@@ -31,6 +31,9 @@ module.exports = ({mongoose}) => {
     },
     createdTime:{
         type:Date
+    },
+    isHot:{
+        type:Boolean
     }
   });
   return mongoose.model('Good', GoodSchema);

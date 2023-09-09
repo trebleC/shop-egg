@@ -7,6 +7,7 @@ class GoodService extends Service {
         if(!goodInfo.goodId){
            
             goodInfo.goodId = await getNextSequenceValue('goods',this.ctx)
+            goodInfo.isHot = false
             goodInfo.createTime = new Date()
             await this.ctx.model.Good.create(goodInfo)
             
@@ -39,6 +40,24 @@ class GoodService extends Service {
     async getGoodList(params){
         let query = {
             name: new RegExp(params.name, 'i')
+        }
+        if(query.categoryId !== undefined){
+            query.categoryId = params.categoryId
+        }
+        
+        
+        return await this.ctx.model.Good.find(query,null).find(()=>{})
+        .sort({_id:-1})
+    }
+
+
+    async setHot(params){
+        return await this.ctx.model.Good.findOneAndUpdate({goodId:params.goodId},{isHot:params.isHot})
+    }
+    async queryHotGoodList(params){
+        let query = {
+            name: new RegExp(params.name, 'i'),
+            isHot:true
         }
         if(query.categoryId !== undefined){
             query.categoryId = params.categoryId

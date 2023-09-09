@@ -55,6 +55,26 @@ class GoodController extends Controller {
       data:list
     }
   }
+
+  async setHot(){
+    let list = await this.ctx.service.good.setHot(this.ctx.query)
+
+    this.ctx.body = {
+      code:0,
+      message:'success',
+    }
+  }
+
+  async queryHotGoodList(){
+    let list = await this.ctx.service.good.queryHotGoodList(this.ctx.query)
+
+    this.ctx.body = {
+      code:0,
+      message:'success',
+      data:list
+    }
+  }
+  
 }
 
 module.exports = GoodController;

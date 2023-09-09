@@ -27,6 +27,8 @@ module.exports = app => {
   router.get('/queryGood',controller.good.queryGood)
   router.get('/deleteGood',controller.good.deleteGood)
   router.get('/queryGoodList',controller.good.queryGoodList)
+  router.get('/setHot',controller.good.setHot)
+  router.get('/queryHotGoodList',controller.good.queryHotGoodList)
 
 
   router.post('/saveDemand',controller.demand.saveDemand)
