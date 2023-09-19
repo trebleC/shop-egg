@@ -48,11 +48,13 @@ class GoodController extends Controller {
 
   async queryGoodList(){
     let list = await this.ctx.service.good.getGoodList(this.ctx.query)
+    let total = await this.ctx.service.good.getGoodListTotal(this.ctx.query)
 
     this.ctx.body = {
       code:0,
       message:'success',
-      data:list
+      data:list,
+      total:total
     }
   }
 

@@ -36,7 +36,18 @@ class GoodService extends Service {
          );
         // return await this.ctx.model.Good.findOne({goodId})
     }
+    async getGoodListTotal(params){
+        let query = {}
+        if(params.name){
+            query.name = new RegExp(params.name, 'i')
+        }
+        if(params.categoryId || params.categoryId === 0){
+            query.categoryId = params.categoryId
+        }
+        return this.ctx.model.Good.count(query,null)
 
+
+    }
     async getGoodList(params){
         let query = {}
         if(params.name){
@@ -45,9 +56,19 @@ class GoodService extends Service {
         if(params.categoryId || params.categoryId === 0){
             query.categoryId = params.categoryId
         }
-        
-        return await this.ctx.model.Good.find(query,null).find(()=>{})
-        .sort({_id:-1})
+
+        let {pageSize,pageNo} = params
+
+        if(pageSize){
+            let skipCount =pageSize * (pageNo-1)
+            return await this.ctx.model.Good.find(query,null).find(()=>{}).skip(parseInt(skipCount)).limit(parseInt(pageSize))
+
+        }else{
+            return await this.ctx.model.Good.find(query,null).find(()=>{})
+        }
+
+
+       
     }
 
 
